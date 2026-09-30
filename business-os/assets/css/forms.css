@@ -1,0 +1,412 @@
+/* ============================================================
+   FORMS.CSS — Form Controls, Inputs, Select, Textarea
+   ============================================================ */
+
+/* ── Form Layout ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form-section {
+  margin-bottom: var(--space-6);
+}
+
+.form-section-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Labels ── */
+.form-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form-label .required {
+  color: var(--status-error);
+  font-size: var(--text-xs);
+}
+
+.form-label .optional {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: var(--weight-regular);
+}
+
+/* ── Base Input ── */
+.form-input {
+  height: 38px;
+  padding: 0 var(--space-3);
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  width: 100%;
+  transition: all var(--transition-fast);
+}
+
+.form-input:hover {
+  border-color: var(--border-medium);
+}
+
+.form-input:focus {
+  border-color: var(--border-input-focus);
+  box-shadow: 0 0 0 3px var(--accent-primary-subtle);
+  background: var(--bg-input-focus);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-input.error {
+  border-color: var(--status-error);
+  background: rgba(255, 71, 87, 0.04);
+}
+
+.form-input.success {
+  border-color: var(--status-success);
+}
+
+/* Input sizes */
+.form-input-sm {
+  height: 32px;
+  font-size: var(--text-xs);
+  padding: 0 var(--space-2);
+}
+
+.form-input-lg {
+  height: 44px;
+  font-size: var(--text-base);
+  padding: 0 var(--space-4);
+}
+
+/* ── Textarea ── */
+.form-textarea {
+  padding: var(--space-3);
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  width: 100%;
+  resize: vertical;
+  min-height: 100px;
+  line-height: var(--leading-normal);
+  transition: all var(--transition-fast);
+}
+
+.form-textarea:hover {
+  border-color: var(--border-medium);
+}
+
+.form-textarea:focus {
+  border-color: var(--border-input-focus);
+  box-shadow: 0 0 0 3px var(--accent-primary-subtle);
+  background: var(--bg-input-focus);
+}
+
+/* ── Select ── */
+.form-select {
+  height: 38px;
+  padding: 0 var(--space-8) 0 var(--space-3);
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+}
+
+.form-select:hover {
+  border-color: var(--border-medium);
+}
+
+.form-select:focus {
+  border-color: var(--border-input-focus);
+  box-shadow: 0 0 0 3px var(--accent-primary-subtle);
+}
+
+.form-select option {
+  background: var(--bg-dropdown);
+  color: var(--text-primary);
+}
+
+/* ── Input with Icon ── */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon-left,
+.input-icon-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-left  { left: var(--space-3); }
+.input-icon-right { right: var(--space-3); }
+
+.input-group .form-input.has-icon-left  { padding-left: 2.5rem; }
+.input-group .form-input.has-icon-right { padding-right: 2.5rem; }
+
+.input-icon-right.clickable {
+  pointer-events: auto;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+  padding: var(--space-1);
+}
+
+.input-icon-right.clickable:hover {
+  color: var(--text-primary);
+}
+
+/* ── Prefix/Suffix ── */
+.input-addon {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input-addon-text {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-input);
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input-addon-text:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border-right: none;
+}
+
+.input-addon-text:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: none;
+}
+
+.input-addon .form-input {
+  border-radius: 0;
+}
+
+.input-addon .form-input:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.input-addon .form-input:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* ── Checkbox & Radio ── */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.form-check input[type="checkbox"],
+.form-check input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-input);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.form-check input[type="checkbox"] {
+  border-radius: 4px;
+}
+
+.form-check input[type="radio"] {
+  border-radius: var(--radius-full);
+}
+
+.form-check input:checked {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.form-check input[type="checkbox"]:checked::after {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  font-size: 10px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+}
+
+.form-check input[type="radio"]:checked::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: white;
+  margin: auto;
+  display: block;
+  margin-top: 4px;
+}
+
+.form-check-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+/* ── Help Text ── */
+.form-help {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.form-error {
+  font-size: var(--text-xs);
+  color: var(--status-error);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form-success {
+  font-size: var(--text-xs);
+  color: var(--status-success);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ── Color Input ── */
+.form-color {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-input);
+  background: var(--bg-input);
+  cursor: pointer;
+  padding: 3px;
+  overflow: hidden;
+}
+
+/* ── File Input ── */
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 100px;
+}
+
+.file-drop-zone {
+  border: 2px dashed var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--bg-card);
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.dragover {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+}
+
+.file-drop-zone-icon {
+  font-size: 2rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.file-drop-zone p {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-2);
+}
+
+.file-drop-zone span {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ── Form Footer ── */
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-6);
+}
+
+.form-footer.justify-between {
+  justify-content: space-between;
+}
+
+

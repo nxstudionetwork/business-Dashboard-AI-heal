@@ -1,0 +1,370 @@
+/* ============================================================
+   DASHBOARD.CSS — Dashboard Page Specific Styles
+   ============================================================ */
+
+/* ── Dashboard Grid ── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.col-span-3  { grid-column: span 3; }
+.col-span-4  { grid-column: span 4; }
+.col-span-6  { grid-column: span 6; }
+.col-span-8  { grid-column: span 8; }
+.col-span-12 { grid-column: span 12; }
+
+/* ── Health Score ── */
+.health-score-widget {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 217, 126, 0.04) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.health-score-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.health-score-ring svg {
+  transform: rotate(-90deg);
+  width: 80px;
+  height: 80px;
+}
+
+.health-score-ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.05);
+  stroke-width: 6;
+}
+
+.health-score-ring-fill {
+  fill: none;
+  stroke: var(--accent-primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--transition-slow);
+  filter: drop-shadow(0 0 4px var(--accent-primary));
+}
+
+.health-score-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.health-score-value {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.health-score-pct {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.health-score-info {
+  flex: 1;
+}
+
+.health-score-title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.health-score-desc {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.health-factors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.health-factor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.health-factor-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.health-factor-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--accent-primary);
+}
+
+.health-factor-val {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Revenue Chart Area ── */
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+.chart-area {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chart-area canvas {
+  width: 100% !important;
+  max-height: 220px;
+}
+
+/* ── Mini Bar Chart ── */
+.mini-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+}
+
+.mini-bar {
+  flex: 1;
+  background: var(--accent-primary-muted);
+  border-radius: 2px 2px 0 0;
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.mini-bar:hover {
+  background: var(--accent-primary);
+}
+
+.mini-bar.selected {
+  background: var(--accent-primary);
+}
+
+/* ── Revenue Chart ── */
+.revenue-chart-wrapper {
+  padding: 0 var(--space-5) var(--space-4);
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-5);
+  flex-wrap: wrap;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+/* ── Dashboard KPI Row ── */
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Upcoming Widget ── */
+.upcoming-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.upcoming-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.upcoming-date-block {
+  width: 40px;
+  height: 44px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.upcoming-date-day {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.upcoming-date-mon {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.upcoming-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.upcoming-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upcoming-meta {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+.upcoming-urgent .upcoming-date-block {
+  background: var(--status-error-bg);
+  border-color: rgba(255, 71, 87, 0.2);
+}
+
+.upcoming-urgent .upcoming-date-day {
+  color: var(--status-error);
+}
+
+/* ── Quick Actions Panel ── */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.quick-action-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-medium);
+  transform: translateY(-1px);
+}
+
+.quick-action-btn:active {
+  transform: translateY(0);
+}
+
+.quick-action-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.quick-action-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+}
+
+/* ── Cashflow Summary ── */
+.cashflow-bars {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+  height: 80px;
+  padding: 0 0 var(--space-2);
+}
+
+.cashflow-bar-group {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+  align-items: flex-end;
+  position: relative;
+}
+
+.cashflow-bar {
+  flex: 1;
+  min-width: 8px;
+  border-radius: 3px 3px 0 0;
+  transition: opacity var(--transition-fast);
+}
+
+.cashflow-bar.income  { background: var(--accent-primary); }
+.cashflow-bar.expense { background: var(--status-error); }
+
+.cashflow-bar:hover { opacity: 0.8; }
+
+.cashflow-months {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.cashflow-month-label {
+  flex: 1;
+  text-align: center;
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+

@@ -1,0 +1,194 @@
+/* ============================================================
+   THEME.CSS — CSS Variables & Design Tokens
+   Business OS Design System
+   ============================================================ */
+
+:root {
+  /* ── Background Colors ── */
+  --bg-primary:       #0a0a0a;
+  --bg-secondary:     #111111;
+  --bg-tertiary:      #1a1a1a;
+  --bg-card:          #141414;
+  --bg-card-hover:    #1e1e1e;
+  --bg-sidebar:       #0d0d0d;
+  --bg-header:        #0d0d0d;
+  --bg-input:         #1a1a1a;
+  --bg-input-focus:   #1f1f1f;
+  --bg-overlay:       rgba(0, 0, 0, 0.75);
+  --bg-skeleton:      #1e1e1e;
+  --bg-skeleton-shine:#252525;
+  --bg-tooltip:       #1e1e1e;
+  --bg-dropdown:      #161616;
+  --bg-badge:         #1a1a1a;
+  --bg-table-row:     #131313;
+  --bg-table-hover:   #1c1c1c;
+  --bg-table-stripe:  #121212;
+
+  /* ── Sidebar Gradient ── */
+  --sidebar-gradient: linear-gradient(180deg, #0d0d0d 0%, #0a1a0f 60%, #0d1a10 100%);
+
+  /* ── Accent Colors ── */
+  --accent-primary:   #00d97e;
+  --accent-primary-dark: #00b567;
+  --accent-primary-light: #1adf8b;
+  --accent-primary-subtle: rgba(0, 217, 126, 0.08);
+  --accent-primary-muted:  rgba(0, 217, 126, 0.15);
+  --accent-primary-glow:   rgba(0, 217, 126, 0.25);
+
+  --accent-secondary:       #f5c542;
+  --accent-secondary-dark:  #d4a820;
+  --accent-secondary-light: #f7d060;
+  --accent-secondary-subtle: rgba(245, 197, 66, 0.08);
+  --accent-secondary-muted:  rgba(245, 197, 66, 0.15);
+
+  /* ── Text Colors ── */
+  --text-primary:    #f0f0f0;
+  --text-secondary:  #a0a0a0;
+  --text-tertiary:   #666666;
+  --text-muted:      #4a4a4a;
+  --text-inverse:    #0a0a0a;
+  --text-accent:     #00d97e;
+  --text-gold:       #f5c542;
+  --text-link:       #00d97e;
+  --text-link-hover: #1adf8b;
+
+  /* ── Border Colors ── */
+  --border-subtle:  rgba(255, 255, 255, 0.05);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-medium:  rgba(255, 255, 255, 0.12);
+  --border-strong:  rgba(255, 255, 255, 0.20);
+  --border-accent:  rgba(0, 217, 126, 0.30);
+  --border-gold:    rgba(245, 197, 66, 0.30);
+  --border-input:   rgba(255, 255, 255, 0.10);
+  --border-input-focus: rgba(0, 217, 126, 0.50);
+
+  /* ── Status Colors ── */
+  --status-success:       #00d97e;
+  --status-success-bg:    rgba(0, 217, 126, 0.10);
+  --status-success-text:  #00d97e;
+
+  --status-warning:       #f5c542;
+  --status-warning-bg:    rgba(245, 197, 66, 0.10);
+  --status-warning-text:  #f5c542;
+
+  --status-error:         #ff4757;
+  --status-error-bg:      rgba(255, 71, 87, 0.10);
+  --status-error-text:    #ff4757;
+
+  --status-info:          #4da6ff;
+  --status-info-bg:       rgba(77, 166, 255, 0.10);
+  --status-info-text:     #4da6ff;
+
+  --status-neutral:       #888888;
+  --status-neutral-bg:    rgba(136, 136, 136, 0.10);
+  --status-neutral-text:  #888888;
+
+  --status-purple:        #9b59b6;
+  --status-purple-bg:     rgba(155, 89, 182, 0.10);
+  --status-purple-text:   #9b59b6;
+
+  /* ── Priority Colors ── */
+  --priority-critical:  #ff4757;
+  --priority-high:      #ff6b35;
+  --priority-medium:    #f5c542;
+  --priority-low:       #00d97e;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 24px rgba(0,0,0,0.6);
+  --shadow-xl:   0 16px 48px rgba(0,0,0,0.7);
+  --shadow-2xl:  0 24px 64px rgba(0,0,0,0.8);
+  --shadow-accent: 0 0 20px rgba(0, 217, 126, 0.15);
+  --shadow-gold:   0 0 20px rgba(245, 197, 66, 0.15);
+  --shadow-card:   0 2px 8px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.05);
+  --shadow-modal:  0 24px 80px rgba(0,0,0,0.8);
+  --shadow-dropdown: 0 8px 30px rgba(0,0,0,0.6);
+
+  /* ── Typography ── */
+  --font-sans:  'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --text-xs:    0.6875rem;  /* 11px */
+  --text-sm:    0.8125rem;  /* 13px */
+  --text-base:  0.9375rem;  /* 15px */
+  --text-md:    1rem;       /* 16px */
+  --text-lg:    1.125rem;   /* 18px */
+  --text-xl:    1.25rem;    /* 20px */
+  --text-2xl:   1.5rem;     /* 24px */
+  --text-3xl:   1.875rem;   /* 30px */
+  --text-4xl:   2.25rem;    /* 36px */
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --leading-tight:  1.25;
+  --leading-normal: 1.5;
+  --leading-loose:  1.75;
+
+  /* ── Spacing ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+
+  /* ── Radii ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  20px;
+  --radius-full: 9999px;
+
+  /* ── Layout ── */
+  --sidebar-width:          240px;
+  --sidebar-collapsed-width: 60px;
+  --header-height:          60px;
+  --drawer-width:           460px;
+
+  /* ── Transitions ── */
+  --transition-fast:    150ms ease;
+  --transition-base:    250ms ease;
+  --transition-slow:    400ms ease;
+  --transition-spring:  300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index Scale ── */
+  --z-base:       1;
+  --z-dropdown:   100;
+  --z-sticky:     200;
+  --z-header:     300;
+  --z-sidebar:    400;
+  --z-drawer:     500;
+  --z-modal:      600;
+  --z-toast:      700;
+  --z-tooltip:    800;
+  --z-command:    900;
+
+  /* ── Glassmorphism ── */
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-blur: 12px;
+
+  /* ── Glow Effects ── */
+  --glow-green: 0 0 20px rgba(0, 217, 126, 0.15);
+  --glow-gold: 0 0 20px rgba(245, 197, 66, 0.15);
+  --glow-red: 0 0 20px rgba(255, 71, 87, 0.15);
+  --glow-blue: 0 0 20px rgba(77, 166, 255, 0.15);
+
+  /* ── Frosted Glass ── */
+  --frosted-bg: rgba(20, 20, 20, 0.7);
+  --frosted-border: rgba(255, 255, 255, 0.08);
+  --frosted-blur: 20px;
+}
+
+

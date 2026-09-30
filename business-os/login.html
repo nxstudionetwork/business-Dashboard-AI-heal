@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Business OS</title>
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <style>
+    /* ── Login Page Styles ── */
+    .login-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Left Panel (Branding) ── */
+    .login-branding {
+      background: linear-gradient(135deg, #0a0a0a 0%, #0a1a0f 50%, #0d2010 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-bg-orbs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+    }
+
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: var(--accent-primary);
+      top: -100px; left: -100px;
+      animation: loginBgMove 20s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: var(--accent-secondary);
+      bottom: 0; right: -80px;
+      animation: loginBgMove 25s ease-in-out infinite reverse;
+    }
+
+    .orb-3 {
+      width: 200px; height: 200px;
+      background: #4da6ff;
+      top: 50%; left: 50%;
+      animation: loginBgMove 18s ease-in-out infinite 3s;
+    }
+
+    /* Grid background */
+    .login-branding::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0,217,126,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,217,126,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .login-brand-top {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-logo-mark {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 30px rgba(0,217,126,0.3);
+    }
+
+    .login-brand-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .login-brand-tag {
+      font-size: 0.75rem;
+      color: var(--accent-primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .login-hero {
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .login-hero h1 span {
+      color: var(--accent-primary);
+    }
+
+    .login-hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+
+    .login-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+
+    .login-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .login-feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-primary-subtle);
+      border: 1px solid var(--accent-primary-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      color: var(--accent-primary);
+    }
+
+    .login-footer-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Right Panel (Form) ── */
+    .login-form-panel {
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      position: relative;
+    }
+
+    .login-form-wrap {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .login-form-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .login-form-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+    .login-form-subtitle span {
+      color: var(--accent-primary);
+    }
+
+    /* Form Fields */
+    .login-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .login-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .login-input-wrap {
+      position: relative;
+    }
+
+    .login-input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .login-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 3rem 0 2.75rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-input);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 0.9375rem;
+      transition: all 0.2s ease;
+    }
+
+    .login-input:hover {
+      border-color: var(--border-medium);
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--border-input-focus);
+      box-shadow: 0 0 0 3px var(--accent-primary-subtle);
+      background: var(--bg-input-focus);
+    }
+
+    .login-input.error {
+      border-color: var(--status-error);
+      animation: shake 0.4s ease;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.15s;
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .password-toggle:hover {
+      color: var(--text-secondary);
+    }
+
+    /* Options row */
+    .login-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.75rem;
+    }
+
+    .remember-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .remember-checkbox {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border-medium);
+      background: var(--bg-input);
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .remember-checkbox:checked {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .forgot-link {
+      font-size: 0.875rem;
+      color: var(--text-accent);
+      cursor: pointer;
+      transition: color 0.15s;
+      text-decoration: none;
+    }
+
+    .forgot-link:hover {
+      color: var(--accent-primary-light);
+    }
+
+    /* Login Button */
+    .login-btn {
+      width: 100%;
+      height: 48px;
+      background: var(--accent-primary);
+      color: #0a0a0a;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-btn:hover {
+      background: var(--accent-primary-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 217, 126, 0.3);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-btn.loading {
+      color: transparent;
+      pointer-events: none;
+    }
+
+    .login-btn.loading::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #0a0a0a;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    /* Error message */
+    .login-error {
+      display: none;
+      background: var(--status-error-bg);
+      border: 1px solid rgba(255,71,87,0.25);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: var(--status-error);
+      margin-bottom: 1.25rem;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .login-error.visible {
+      display: flex;
+      animation: fadeInUp 0.25s ease;
+    }
+
+    /* Demo credentials */
+    .demo-creds {
+      margin-top: 1.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--accent-primary-subtle);
+      border: 1px solid var(--accent-primary-muted);
+      border-radius: 10px;
+      font-size: 0.85rem;
+    }
+
+    .demo-creds-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .demo-cred-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+      gap: 1rem;
+    }
+
+    .demo-cred-label {
+      color: var(--text-muted);
+    }
+
+    .demo-cred-value {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .demo-cred-value:hover {
+      color: var(--accent-primary);
+    }
+
+    .demo-fill-btn {
+      width: 100%;
+      margin-top: 0.875rem;
+      padding: 0.5rem;
+      background: var(--accent-primary-muted);
+      color: var(--accent-primary);
+      border: none;
+      border-radius: 7px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .demo-fill-btn:hover {
+      background: var(--accent-primary);
+      color: #0a0a0a;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .login-page {
+        grid-template-columns: 1fr;
+      }
+      .login-branding {
+        display: none;
+      }
+      .login-form-panel {
+        min-height: 100vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-form-panel {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+
+    <!-- ── Left Branding Panel ── -->
+    <div class="login-branding">
+      <div class="login-bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+
+      <div class="login-brand-top">
+        <div class="login-logo-mark">⚡</div>
+        <div>
+          <div class="login-brand-name">Business OS</div>
+          <div class="login-brand-tag">Enterprise Platform</div>
+        </div>
+      </div>
+
+      <div class="login-hero">
+        <h1>Run your entire<br /><span>business</span> in one place.</h1>
+        <p>The complete operating system for modern businesses. Manage clients, projects, finances, and team — all from a single powerful platform.</p>
+        <div class="login-features">
+          <div class="login-feature">
+            <div class="login-feature-icon">👥</div>
+            <span>Full CRM with leads, clients, and relationship tracking</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">📊</div>
+            <span>Real-time financial dashboards with smart analytics</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">🚀</div>
+            <span>Project management with milestones and deliverables</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">📄</div>
+            <span>Automated invoicing, payments, and expense tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="login-footer-text">
+        © 2026 Business OS. Enterprise Platform v2.0
+      </div>
+    </div>
+
+    <!-- ── Right Form Panel ── -->
+    <div class="login-form-panel">
+      <div class="login-form-wrap animate-fade-in-up">
+
+        <h2 class="login-form-title">Welcome back</h2>
+        <p class="login-form-subtitle">
+          Sign in to your <span>Business OS</span> account to continue
+        </p>
+
+        <div class="login-error" id="loginError">
+          <span>⚠️</span>
+          <span id="loginErrorText">Invalid email or password. Please try again.</span>
+        </div>
+
+        <form id="loginForm" novalidate>
+
+          <!-- Email -->
+          <div class="login-field">
+            <label for="emailInput" class="login-label">Email Address</label>
+            <div class="login-input-wrap">
+              <span class="login-input-icon">✉️</span>
+              <input
+                type="email"
+                id="emailInput"
+                class="login-input"
+                placeholder="admin@company.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="login-field">
+            <label for="passwordInput" class="login-label">Password</label>
+            <div class="login-input-wrap">
+              <span class="login-input-icon">🔒</span>
+              <input
+                type="password"
+                id="passwordInput"
+                class="login-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              />
+              <button type="button" class="password-toggle" id="pwToggle" aria-label="Toggle password visibility">
+                <span id="pwToggleIcon">👁️</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Options -->
+          <div class="login-options">
+            <label class="remember-label">
+              <input type="checkbox" class="remember-checkbox" id="rememberMe" />
+              Remember me
+            </label>
+            <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="login-btn" id="loginBtn">
+            <span>Sign In</span>
+            <span>→</span>
+          </button>
+
+        </form>
+
+        <!-- Demo Credentials -->
+        <div class="demo-creds">
+          <div class="demo-creds-title">🔑 Demo Access</div>
+          <div class="demo-cred-row">
+            <span class="demo-cred-label">Email</span>
+            <span class="demo-cred-value" onclick="fillDemo('email')">admin@company.com</span>
+          </div>
+          <div class="demo-cred-row">
+            <span class="demo-cred-label">Password</span>
+            <span class="demo-cred-value" onclick="fillDemo('password')">admin123</span>
+          </div>
+          <button class="demo-fill-btn" onclick="fillDemoAll()">⚡ Auto-fill Demo Credentials</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // ── Quick demo fill ──
+    function fillDemo(field) {
+      if (field === 'email') document.getElementById('emailInput').value = 'admin@company.com';
+      if (field === 'password') document.getElementById('passwordInput').value = 'admin123';
+    }
+
+    function fillDemoAll() {
+      fillDemo('email');
+      fillDemo('password');
+      document.getElementById('rememberMe').checked = true;
+    }
+
+    // ── Password Toggle ──
+    document.getElementById('pwToggle').addEventListener('click', function() {
+      const input = document.getElementById('passwordInput');
+      const icon = document.getElementById('pwToggleIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        icon.textContent = '👁️';
+      }
+    });
+
+    // ── Forgot Password ──
+    document.getElementById('forgotLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Demo mode: No password reset available.\n\nUse: admin@company.com / admin123');
+    });
+
+    // ── Login Form ──
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+      const remember = document.getElementById('rememberMe').checked;
+      const btn = document.getElementById('loginBtn');
+      const errorEl = document.getElementById('loginError');
+
+      // Validate
+      if (!email || !password) {
+        showLoginError('Please fill in all fields.');
+        return;
+      }
+
+      // Loading state
+      btn.classList.add('loading');
+      errorEl.classList.remove('visible');
+
+      // Simulate async auth
+      setTimeout(() => {
+        const success = Auth.login(email, password, remember);
+        btn.classList.remove('loading');
+
+        if (success) {
+          btn.textContent = '✓ Signing you in...';
+          btn.style.background = 'var(--status-success)';
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 600);
+        } else {
+          showLoginError('Invalid email or password. Try admin@company.com / admin123');
+          document.getElementById('emailInput').classList.add('error');
+          document.getElementById('passwordInput').classList.add('error');
+          setTimeout(() => {
+            document.getElementById('emailInput').classList.remove('error');
+            document.getElementById('passwordInput').classList.remove('error');
+          }, 1000);
+        }
+      }, 900);
+    });
+
+    function showLoginError(msg) {
+      const el = document.getElementById('loginError');
+      document.getElementById('loginErrorText').textContent = msg;
+      el.classList.add('visible');
+    }
+
+    // ── Auto-redirect if already logged in ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

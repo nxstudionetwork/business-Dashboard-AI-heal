@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clients — Business OS</title>
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/sidebar.css" />
+  <link rel="stylesheet" href="../assets/css/navbar.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/cards.css" />
+  <link rel="stylesheet" href="../assets/css/tables.css" />
+  <link rel="stylesheet" href="../assets/css/forms.css" />
+  <link rel="stylesheet" href="../assets/css/modal.css" />
+  <link rel="stylesheet" href="../assets/css/drawer.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+
+<div class="app-shell" id="appShell">
+
+  <header class="app-header" role="banner">
+    <div class="header-left">
+      <button class="header-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+      <a href="index.html" class="header-logo">
+        <div class="header-logo-mark">⚡</div>
+        <span class="header-logo-name">Business OS</span>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="header-search">
+        <span class="header-search-icon">🔍</span>
+        <input type="text" class="header-search-input" id="globalSearch"
+          placeholder="Search clients, projects, invoices..." aria-label="Global search" />
+        <span class="header-search-kbd">Ctrl K</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="header-quick-add" id="quickAddBtn" aria-label="Quick add">
+        <span>+</span><span>New</span>
+      </button>
+      <div class="header-divider"></div>
+      <button class="header-btn" id="notifBtn" aria-label="Notifications" data-tooltip="Notifications">
+        🔔
+        <span class="notif-badge" id="notifBadge">3</span>
+      </button>
+      <div class="header-divider"></div>
+      <button class="header-branch-btn" id="branchBtn" aria-label="Branch selector">
+        <span class="branch-status-dot"></span>
+        <span>Main Office</span>
+        <span>▾</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="app-sidebar" id="appSidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-nav">
+
+      <div class="nav-section">
+        <a class="nav-item active" data-page="dashboard" data-tooltip="Dashboard" href="#dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">CRM</div>
+        <a class="nav-item" data-page="leads" data-tooltip="Leads" href="#leads">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-label">Leads</span>
+          <span class="nav-badge" id="leadsNavBadge">5</span>
+        </a>
+        <a class="nav-item" data-page="clients" data-tooltip="Clients" href="#clients">
+          <span class="nav-icon">👥</span>
+          <span class="nav-label">Clients</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Projects</div>
+        <div class="nav-item has-submenu" data-submenu="projects-sub" data-tooltip="Projects">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-label">Projects</span>
+          <span class="nav-chevron">›</span>
+        </div>
+        <div class="nav-submenu" id="projects-sub">
+          <a class="nav-subitem" data-page="projects" href="#projects">
+            <span class="nav-subitem-dot"></span>
+            <span>All Projects</span>
+          </a>
+          <a class="nav-subitem" data-page="quotations" href="#quotations">
+            <span class="nav-subitem-dot"></span>
+            <span>Quotations</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Finance</div>
+        <div class="nav-item has-submenu" data-submenu="finance-sub" data-tooltip="Finance">
+          <span class="nav-icon">💰</span>
+          <span class="nav-label">Finance</span>
+          <span class="nav-chevron">›</span>
+        </div>
+        <div class="nav-submenu" id="finance-sub">
+          <a class="nav-subitem" data-page="invoices" href="#invoices">
+            <span class="nav-subitem-dot"></span>
+            <span>Invoices</span>
+          </a>
+          <a class="nav-subitem" data-page="payments" href="#payments">
+            <span class="nav-subitem-dot"></span>
+            <span>Payments</span>
+          </a>
+          <a class="nav-subitem" data-page="expenses" href="#expenses">
+            <span class="nav-subitem-dot"></span>
+            <span>Expenses</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Workspace</div>
+        <a class="nav-item" data-page="documents" data-tooltip="Documents" href="#documents">
+          <span class="nav-icon">📁</span>
+          <span class="nav-label">Documents</span>
+        </a>
+        <a class="nav-item" data-page="calendar" data-tooltip="Calendar" href="#calendar">
+          <span class="nav-icon">📅</span>
+          <span class="nav-label">Calendar</span>
+        </a>
+        <a class="nav-item" data-page="notes" data-tooltip="Notes" href="#notes">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">Notes</span>
+        </a>
+        <a class="nav-item" data-page="reports" data-tooltip="Reports" href="#reports">
+          <span class="nav-icon">📈</span>
+          <span class="nav-label">Reports</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">System</div>
+        <a class="nav-item" data-page="settings" data-tooltip="Settings" href="#settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-item" id="logoutBtn">
+        <span class="nav-icon">🚪</span>
+        <span>Sign Out</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-main" id="appMain" role="main">
+    <div id="pageContent" class="page-enter"></div>
+  </main>
+
+</div>
+
+<div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+<div class="modal-overlay notification-panel" id="notifOverlay">
+  <div class="modal notification-modal glass" role="dialog" aria-label="Notifications">
+    <div class="modal-header">
+      <div class="modal-title"><h3>🔔 Notifications</h3></div>
+      <div class="notification-header-actions">
+        <button class="btn btn-ghost btn-sm" id="markAllReadBtn">Mark all read</button>
+        <button class="modal-close" id="notifClose">✕</button>
+      </div>
+    </div>
+    <div class="modal-body modal-body--no-padding" id="notifList"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="quickAddOverlay" role="dialog" aria-label="Quick add">
+  <div class="modal modal-sm glass" id="quickAddModal">
+    <div class="modal-header">
+      <div class="modal-title">
+        <div class="modal-title-icon">+</div>
+        <h3>Quick Create</h3>
+      </div>
+      <button class="modal-close" id="quickAddClose">✕</button>
+    </div>
+    <div class="modal-body modal-body--compact">
+      <div class="quick-add-grid" id="quickAddGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay command-palette-overlay" id="commandOverlay" role="dialog" aria-label="Command palette">
+  <div class="modal modal-md command-modal glass" id="commandModal">
+    <div class="command-modal-header">
+      <div class="command-input-wrapper">
+        <span class="command-input-icon">⌘</span>
+        <input type="text" id="commandInput" class="form-input command-input"
+          placeholder="Search commands, pages, records..." autocomplete="off" />
+      </div>
+    </div>
+    <div id="commandResults" class="command-results"></div>
+    <div class="command-footer">
+      <span class="command-footer-text">↑↓ navigate &nbsp; ↵ select &nbsp; Esc close</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="crudOverlay" role="dialog">
+  <div class="modal modal-lg glass" id="crudModal">
+    <div class="modal-header">
+      <div class="modal-title">
+        <div class="modal-title-icon" id="crudModalIcon"></div>
+        <h3 id="crudModalTitle">Create Record</h3>
+      </div>
+      <button class="modal-close" id="crudModalClose">✕</button>
+    </div>
+    <div class="modal-body" id="crudModalBody"></div>
+    <div class="modal-footer" id="crudModalFooter">
+      <button class="btn btn-secondary" id="crudCancelBtn">Cancel</button>
+      <button class="btn btn-primary" id="crudSaveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer glass" id="mainDrawer" role="complementary">
+    <div class="drawer-header">
+      <div class="drawer-header-left">
+        <div id="drawerAvatar" class="avatar avatar-md"></div>
+        <div>
+          <div class="drawer-title" id="drawerTitle">Record Detail</div>
+          <div class="drawer-subtitle" id="drawerSubtitle"></div>
+        </div>
+      </div>
+      <div class="drawer-header-actions">
+        <button class="btn btn-ghost btn-icon btn-sm" id="drawerEditBtn" data-tooltip="Edit">✏️</button>
+        <button class="btn btn-ghost btn-icon btn-sm btn-danger-text" id="drawerDeleteBtn" data-tooltip="Delete">🗑️</button>
+        <button class="drawer-close" id="drawerClose">✕</button>
+      </div>
+    </div>
+    <div class="drawer-tabs" id="drawerTabs"></div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-footer" id="drawerFooter" hidden></div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<button id="floatingFab" class="floating-fab glass" aria-label="Quick create" data-tooltip="Quick create">+</button>
+
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/ui.js"></script>
+<script src="../assets/js/modal.js"></script>
+<script src="../assets/js/drawer.js"></script>
+<script src="../assets/js/notifications.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/clients.js"></script>
+<script src="../assets/js/projects.js"></script>
+<script src="../assets/js/invoices.js"></script>
+<script src="../assets/js/payments.js"></script>
+<script src="../assets/js/notes.js"></script>
+<script src="../assets/js/calendar.js"></script>
+<script src="../assets/js/reports.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+<script src="../assets/js/leads.js"></script>
+<script src="../assets/js/quotations.js"></script>
+<script src="../assets/js/documents.js"></script>
+<script src="../assets/js/settings.js"></script>
+<script src="../assets/js/router.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  if (!Auth.requireAuth()) return;
+  Storage.initSeedData();
+  UI.initSidebar();
+  UI.initSubmenus();
+  Search.init();
+  Notifications.init();
+  Drawer.init();
+  (function() {
+    var grid = document.getElementById('quickAddGrid');
+    var overlay = document.getElementById('quickAddOverlay');
+    var openBtn = document.getElementById('quickAddBtn');
+    var closeBtn = document.getElementById('quickAddClose');
+    var quickActions = [
+      { icon: '👥', title: 'New Client', action: function() { location.hash = '#clients'; setTimeout(function() { Clients.openCreateModal(); }, 250); } },
+      { icon: '🚀', title: 'New Project', action: function() { location.hash = '#projects'; setTimeout(function() { Projects.openCreateModal(); }, 250); } },
+      { icon: '📄', title: 'New Invoice', action: function() { location.hash = '#invoices'; setTimeout(function() { Invoices.openCreateModal(); }, 250); } },
+      { icon: '💸', title: 'New Expense', action: function() { location.hash = '#expenses'; setTimeout(function() { Payments.openExpenseModal(); }, 250); } },
+      { icon: '📝', title: 'New Note', action: function() { location.hash = '#notes'; setTimeout(function() { Notes.createNote(); }, 250); } },
+      { icon: '📁', title: 'Upload Document', action: function() { location.hash = '#documents'; setTimeout(function() { Documents.openUploadModal(); }, 250); } },
+    ];
+    if (grid) {
+      grid.innerHTML = quickActions.map(function(a, i) {
+        return '<button type="button" class="quick-add-card" data-quick-action="' + i + '"><span class="quick-add-icon">' + a.icon + '</span><span class="quick-add-title">' + a.title + '</span></button>';
+      }).join('');
+      grid.querySelectorAll('button[data-quick-action]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var idx = parseInt(btn.dataset.quickAction, 10);
+          var action = quickActions[idx];
+          if (action) { overlay.classList.remove('open'); action.action(); }
+        });
+      });
+    }
+    openBtn.addEventListener('click', function() { overlay.classList.add('open'); });
+    closeBtn.addEventListener('click', function() { overlay.classList.remove('open'); });
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('open'); });
+    var fab = document.getElementById('floatingFab');
+    if (fab) { fab.style.display = 'flex'; fab.addEventListener('click', function() { overlay.classList.add('open'); }); }
+  })();
+  document.getElementById('sidebarToggle').addEventListener('click', UI.toggleSidebar);
+  (function() {
+    var branchBtn = document.getElementById('branchBtn');
+    if (!branchBtn) return;
+    branchBtn.addEventListener('click', function() {
+      UI.createDropdown(branchBtn, [
+        { label: 'Main Office', value: 'main' },
+        { label: 'Remote Office', value: 'remote' },
+        { label: 'Field Team', value: 'field' },
+      ], function(selection) {
+        branchBtn.querySelector('span:last-child').textContent = '\u25BE ' + selection.label;
+      });
+    });
+  })();
+  document.getElementById('logoutBtn').addEventListener('click', Auth.logout);
+  Clients.renderPage();
+  UI.setActiveNav('clients');
+});
+</script>
+</body>
+</html>
